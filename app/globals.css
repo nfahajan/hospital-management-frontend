@@ -1,0 +1,498 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 0 0% 100%;
+    --foreground: 278 10% 4%;
+    --card: 0 0% 100%;
+    --card-foreground: 278 10% 4%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 278 10% 4%;
+    --primary: 278 64% 49%;
+    --primary-foreground: 278 64% 95%;
+    --secondary: 278 5% 89%;
+    --secondary-foreground: 278 5% 10%;
+    --muted: 278 5% 89%;
+    --muted-foreground: 278 30% 45%;
+    --accent: 278 34% 79%;
+    --accent-foreground: 278 34% 10%;
+    --destructive: 357.18 100% 45%;
+    --destructive-foreground: 278 64% 95%;
+    --border: 278 5% 80%;
+    --input: 278 5% 80%;
+    --ring: 278 64% 49%;
+    --radius: 0.5rem;
+    --chart-1: 278 64% 49%;
+    --chart-2: 278 49% 64%;
+    --chart-3: 278 34% 74%;
+    --chart-4: 278 74% 34%;
+    --chart-5: 278 69% 24%;
+    --sidebar-background: 278 5% 89%;
+    --sidebar-foreground: 278 5% 10%;
+    --sidebar-primary: 278 64% 49%;
+    --sidebar-primary-foreground: 278 64% 95%;
+    --sidebar-accent: 278 34% 79%;
+    --sidebar-accent-foreground: 278 34% 10%;
+    --sidebar-border: 278 5% 80%;
+    --sidebar-ring: 278 64% 49%;
+  }
+
+  .dark {
+    --background: 278 30% 10%;
+    --foreground: 278 10% 95%;
+    --card: 278 30% 14%;
+    --card-foreground: 278 10% 95%;
+    --popover: 278 30% 14%;
+    --popover-foreground: 278 10% 95%;
+    --primary: 278 60% 54%;
+    --primary-foreground: 278 60% 95%;
+    --secondary: 278 10% 15%;
+    --secondary-foreground: 278 10% 95%;
+    --muted: 278 10% 15%;
+    --muted-foreground: 278 15% 65%;
+    --accent: 278 34% 29%;
+    --accent-foreground: 278 34% 95%;
+    --destructive: 357.18 100% 45%;
+    --destructive-foreground: 278 60% 95%;
+    --border: 278 15% 25%;
+    --input: 278 15% 25%;
+    --ring: 278 60% 54%;
+    --sidebar-background: 278 30% 22%;
+    --sidebar-foreground: 278 10% 95%;
+    --sidebar-primary: 278 60% 54%;
+    --sidebar-primary-foreground: 278 60% 95%;
+    --sidebar-accent: 278 34% 29%;
+    --sidebar-accent-foreground: 278 34% 95%;
+    --sidebar-border: 278 15% 25%;
+    --sidebar-ring: 278 60% 54%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground;
+    font-feature-settings: "rlig" 1, "calt" 1;
+  }
+}
+
+/* Custom Workify specific styles */
+@layer components {
+  .btn-primary {
+    @apply bg-primary text-primary-foreground hover:bg-primary/90 px-4 py-2 rounded-md font-medium transition-colors;
+  }
+
+  .btn-secondary {
+    @apply bg-secondary text-secondary-foreground hover:bg-secondary/80 px-4 py-2 rounded-md font-medium transition-colors;
+  }
+
+  .card {
+    @apply bg-card text-card-foreground border border-border rounded-lg shadow-sm;
+  }
+
+  .gradient-bg {
+    @apply bg-gradient-to-br from-primary/10 via-accent/20 to-secondary/30;
+  }
+
+  .gradient-text {
+    @apply bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent;
+  }
+
+  .job-card {
+    @apply bg-card p-6 rounded-lg border border-border hover:shadow-md transition-shadow;
+  }
+
+  .company-card {
+    @apply bg-card p-4 rounded-lg border border-border hover:border-primary/20 transition-colors;
+  }
+
+  .search-input {
+    @apply bg-background border border-input rounded-md px-3 py-2 text-sm placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2;
+  }
+
+  .nav-link {
+    @apply text-foreground hover:text-primary transition-colors font-medium;
+  }
+
+  .nav-link-active {
+    @apply text-primary border-b-2 border-primary;
+  }
+
+  .form-input {
+    @apply bg-background border border-input rounded-md px-3 py-2 text-sm placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2;
+  }
+
+  .form-label {
+    @apply block text-sm font-medium text-foreground mb-1;
+  }
+
+  /* Hero Section Curved Design - Matching Reference Image */
+  .hero-curve-left {
+    clip-path: polygon(0 0, 65% 0, 45% 100%, 0 100%);
+  }
+
+  .hero-curve-right {
+    clip-path: polygon(45% 0, 100% 0, 100% 100%, 65% 100%);
+  }
+
+  /* Responsive curve adjustments */
+  @media (max-width: 1024px) {
+    .hero-curve-left {
+      clip-path: polygon(0 0, 70% 0, 50% 100%, 0 100%);
+    }
+
+    .hero-curve-right {
+      clip-path: polygon(50% 0, 100% 0, 100% 100%, 70% 100%);
+    }
+  }
+
+  @media (max-width: 768px) {
+    .hero-curve-left {
+      clip-path: polygon(0 0, 100% 0, 100% 60%, 0 70%);
+    }
+
+    .hero-curve-right {
+      clip-path: polygon(0 60%, 100% 70%, 100% 100%, 0 100%);
+    }
+  }
+
+  /* Hero search form enhancements */
+  .hero-search-form {
+    @apply bg-card/95 backdrop-blur-sm rounded-xl shadow-xl border border-border/50;
+  }
+
+  .hero-search-input {
+    @apply w-full pl-12 pr-4 py-4 bg-transparent border-none rounded-lg focus:outline-none focus:ring-0 text-foreground placeholder:text-muted-foreground;
+  }
+
+  .hero-search-button {
+    @apply px-8 py-4 bg-primary hover:bg-primary/90 text-primary-foreground font-semibold rounded-lg transition-all duration-200 hover:shadow-lg;
+  }
+
+  .popular-search-tag {
+    @apply px-3 py-1.5 text-sm text-muted-foreground hover:text-primary hover:bg-accent/50 rounded-full transition-colors border border-border hover:border-primary/30 cursor-pointer;
+  }
+}
+
+/* Animation utilities */
+@layer utilities {
+  .animate-fade-in {
+    @apply animate-in fade-in duration-500;
+  }
+
+  .animate-slide-up {
+    @apply animate-in slide-in-from-bottom-4 duration-500;
+  }
+
+  .animate-slide-down {
+    @apply animate-in slide-in-from-top-4 duration-500;
+  }
+
+  .animate-scale-in {
+    @apply animate-in zoom-in-95 duration-300;
+  }
+
+  /* Hero section animations */
+  .animate-hero-content {
+    animation: heroSlideIn 0.8s ease-out;
+  }
+
+  @keyframes heroSlideIn {
+    from {
+      opacity: 0;
+      transform: translateX(-30px);
+    }
+    to {
+      opacity: 1;
+      transform: translateX(0);
+    }
+  }
+}
+
+/* Range Slider Styling */
+.slider {
+  -webkit-appearance: none;
+  appearance: none;
+  background: #e2e8f0;
+  outline: none;
+}
+
+.slider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 20px;
+  height: 20px;
+  background: #3b82f6;
+  cursor: pointer;
+  border-radius: 50%;
+  border: 2px solid white;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.slider::-moz-range-thumb {
+  width: 20px;
+  height: 20px;
+  background: #3b82f6;
+  cursor: pointer;
+  border-radius: 50%;
+  border: 2px solid white;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: hsl(var(--secondary));
+}
+
+::-webkit-scrollbar-thumb {
+  background: hsl(var(--muted-foreground));
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: hsl(var(--muted-foreground));
+}
+
+/* Loading animation */
+.loading {
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* Responsive utilities */
+.container-custom {
+  @apply mx-auto px-4 sm:px-6 lg:px-8;
+}
+
+/* Animation classes */
+.fade-in {
+  animation: fadeIn 0.5s ease-in-out;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.slide-up {
+  animation: slideUp 0.5s ease-out;
+}
+@keyframes slideUp {
+  from {
+    transform: translateY(20px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+/* React Quill custom styles */
+.ql-editor {
+  font-size: 14px;
+  line-height: 1.5;
+  color: #374151;
+  min-height: 150px;
+}
+
+.ql-editor.ql-blank::before {
+  color: #9ca3af;
+  font-style: normal;
+}
+
+.ql-toolbar .ql-stroke {
+  stroke: #6b7280;
+}
+
+.ql-toolbar .ql-fill {
+  fill: #6b7280;
+}
+
+.ql-toolbar button:hover {
+  color: #3b82f6;
+}
+
+.ql-toolbar button:hover .ql-stroke {
+  stroke: #3b82f6;
+}
+
+.ql-toolbar button:hover .ql-fill {
+  fill: #3b82f6;
+}
+
+.ql-toolbar button.ql-active {
+  color: #3b82f6;
+}
+
+.ql-toolbar button.ql-active .ql-stroke {
+  stroke: #3b82f6;
+}
+
+.ql-toolbar button.ql-active .ql-fill {
+  fill: #3b82f6;
+}
+
+/* Focus styles */
+.ql-container.ql-snow:focus-within {
+  border-color: #3b82f6;
+  box-shadow: 0 0 0 1px #3b82f6;
+}
+
+/* Link styles */
+.ql-editor a {
+  color: #3b82f6;
+  text-decoration: underline;
+}
+
+.ql-editor a:hover {
+  color: #1d4ed8;
+}
+
+/* List styles */
+.ql-editor ul,
+.ql-editor ol {
+  padding-left: 1.5rem;
+  margin: 0.5rem 0;
+}
+
+.ql-editor li {
+  margin: 0.25rem 0;
+}
+
+/* Header styles */
+.ql-editor h1 {
+  font-size: 1.5rem;
+  font-weight: 600;
+  margin: 1rem 0 0.5rem 0;
+}
+
+.ql-editor h2 {
+  font-size: 1.25rem;
+  font-weight: 600;
+  margin: 0.75rem 0 0.5rem 0;
+}
+
+.ql-editor h3 {
+  font-size: 1.125rem;
+  font-weight: 600;
+  margin: 0.5rem 0 0.25rem 0;
+}
+
+/* React Quill wrapper styles */
+.quill-wrapper {
+  border: 1px solid #e5e7eb;
+  border-radius: 6px;
+  overflow: hidden;
+  background: white;
+}
+
+.quill-wrapper .ql-toolbar {
+  background: #f9fafb;
+  border: none;
+  border-bottom: 1px solid #e5e7eb;
+  padding: 8px;
+}
+
+.quill-wrapper .ql-container {
+  border: none;
+  font-size: 14px;
+}
+
+.quill-wrapper .ql-editor {
+  min-height: 150px;
+  padding: 12px;
+  color: #374151;
+}
+
+.quill-wrapper .ql-editor.ql-blank::before {
+  color: #9ca3af;
+  font-style: normal;
+  left: 12px;
+  right: 12px;
+}
+
+/* Focus state for Quill wrapper */
+.quill-wrapper:focus-within {
+  border-color: #3b82f6;
+  box-shadow: 0 0 0 1px #3b82f6;
+}
+
+/* Ensure Quill editor is visible */
+.react-quill-editor {
+  display: block !important;
+}
+
+/* Fix dropdown menu z-index issues */
+[data-radix-popper-content-wrapper] {
+  z-index: 9999 !important;
+}
+
+[data-radix-dropdown-menu-content] {
+  z-index: 9999 !important;
+}
+
+.react-quill-editor .ql-toolbar {
+  display: flex !important;
+  flex-wrap: wrap;
+  align-items: center;
+}
+
+.react-quill-editor .ql-container {
+  display: block !important;
+}
+
+.react-quill-editor .ql-editor {
+  display: block !important;
+  min-height: 150px;
+  box-sizing: border-box;
+}
+
+/* Fix for Quill button spacing */
+.ql-toolbar .ql-formats {
+  margin-right: 15px;
+}
+
+.ql-toolbar .ql-formats:last-child {
+  margin-right: 0;
+}
+
+/* Ensure proper button sizing */
+.ql-toolbar button {
+  width: 28px;
+  height: 28px;
+  padding: 0;
+  border: none;
+  background: transparent;
+  cursor: pointer;
+  border-radius: 3px;
+}
+
+.ql-toolbar button:hover {
+  background: rgba(0, 0, 0, 0.05);
+}
+
+.ql-toolbar button.ql-active {
+  background: rgba(59, 130, 246, 0.1);
+}
